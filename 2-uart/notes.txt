@@ -1,0 +1,32 @@
+Steps:
+
+0. parametri modul kernel (major, option); default: major=42, option=OPTION_BOTH.
+
+1. alocare port range COM1 şi COM2 (0x3f8 și 0x2f8, de fapt întreg range-ul de 8 adrese 0x3f8-0x3ff și 0x2f8-0x2ff
+
+2. implementare rutine standard (open, read, write, close)
+
+3. suport ioctl (schimbarea parametrilor de comunicatie cu ajutorul unei operatii ioctl (UART16550_IOCTL_SET_LINE))
+
+4. intreruperi (numarul intreruperii asociate cu COM1 este 4 (IRQ_COM1), iar numarul intreruperii asociate cu COM2 este 3 (IRQ_COM2))
+
+
+Notes:
+
+0. device de tip caracter
+1. nume modul: uart16550.ko
+2. minori: 0, 1
+3. kfifo
+4. starting point: exemplu
+5. sincronizare read/write cu intreruperile (wait queues)
+6. .h cu definitii
+
+
+Take a look at:
+
+0. the port range that needs to pe allocated
+
+
+TODO:
+
+[DONE] sync open - close file (only one access; else "resource busy")
